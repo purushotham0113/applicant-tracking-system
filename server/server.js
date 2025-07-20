@@ -40,7 +40,10 @@ app.use(limiter);
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'https://applicant-tracking-system-client.onrender.com',
+  origin: [
+    'http://localhost:5173',
+    'https://applicant-tracking-system-client.onrender.com'
+  ],
   credentials: true,
   optionsSuccessStatus: 200
 }));
