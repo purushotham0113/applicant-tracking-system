@@ -14,12 +14,15 @@
 //     }
 //   }
 // })
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    extensions: ['.jsx', '.js'], // Force JSX over TSX
+    extensions: ['.jsx', '.js'],
   },
+  base: '/', // ✅ Add this line for correct path resolution
 })
+

@@ -40,7 +40,7 @@ app.use(limiter);
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: process.env.CLIENT_URL || 'https://applicant-tracking-system-client.onrender.com',
   credentials: true,
   optionsSuccessStatus: 200
 }));
@@ -61,6 +61,7 @@ app.use(session({
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
+    sameSite: 'none',
     maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
   }
 }));

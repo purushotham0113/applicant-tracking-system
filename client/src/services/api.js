@@ -1,7 +1,8 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5500/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://applicant-tracking-system-dhsh.onrender.com/api';
+// const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5500/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
