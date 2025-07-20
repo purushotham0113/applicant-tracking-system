@@ -4,7 +4,7 @@ import User from '../models/User.js';
 import cloudinary from '../config/cloudinary.js';
 
 export const applyForJob = async (req, res) => {
-  console.log('📥 applyForJob controller triggered');
+  // //console.log('📥 applyForJob controller triggered');
 
   try {
     const { jobId } = req.params;
@@ -16,7 +16,7 @@ export const applyForJob = async (req, res) => {
     const candidate = await User.findById(req.session.userId);
 
     if (req.file) {
-      console.log('📎 File received:', req.file.originalname, req.file.mimetype, req.file.size);
+      //console.log('📎 File received:', req.file.originalname, req.file.mimetype, req.file.size);
 
       try {
         // upload to Cloudinary as a raw file
@@ -33,7 +33,7 @@ export const applyForJob = async (req, res) => {
         });
 
         // log the Cloudinary response
-        console.log('✅ Cloudinary upload result:', result);
+        // //console.log('✅ Cloudinary upload result:', result);
 
         // assign the outer resumeUrl (no `const` here!)
         resumeUrl = cloudinary.url(result.public_id, {
@@ -41,16 +41,16 @@ export const applyForJob = async (req, res) => {
           secure: true
         });
 
-        console.log('🔗 Final resume URL:', resumeUrl);
+        // //console.log('🔗 Final resume URL:', resumeUrl);
 
       } catch (uploadError) {
-        console.error('❌ Error uploading to Cloudinary:', uploadError);
+        // //console.error('❌ Error uploading to Cloudinary:', uploadError);
         return res.status(500).json({ success: false, message: 'Failed to upload resume', error: uploadError.message });
       }
     } else {
       // no new file—use existing
       resumeUrl = candidate.resume;
-      console.log('ℹ️ Using existing resume URL:', resumeUrl);
+      //console.log('ℹ️ Using existing resume URL:', resumeUrl);
     }
 
     if (!resumeUrl) {
@@ -65,7 +65,7 @@ export const applyForJob = async (req, res) => {
     res.status(201).json({ success: true, message: 'Application submitted successfully', application });
 
   } catch (error) {
-    console.error('Apply for job error:', error);
+    //console.error('Apply for job error:', error);
     res.status(500).json({ success: false, message: 'Failed to submit application', error: error.message });
   }
 };
@@ -96,7 +96,7 @@ export const getCandidateApplications = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Get candidate applications error:', error);
+    //console.error('Get candidate applications error:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to fetch applications',
@@ -155,7 +155,7 @@ export const getJobApplications = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Get job applications error:', error);
+    //console.error('Get job applications error:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to fetch applications',
@@ -199,7 +199,7 @@ export const updateApplicationStatus = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Update application status error:', error);
+    //console.error('Update application status error:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to update application status',
@@ -241,7 +241,7 @@ export const getApplicationById = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Get application by ID error:', error);
+    //console.error('Get application by ID error:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to fetch application',
@@ -289,7 +289,7 @@ export const getRecruiterApplications = async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Get recruiter applications error:', error);
+    //console.error('Get recruiter applications error:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to fetch applications',
