@@ -22,7 +22,7 @@ import connectDB from './config/database.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 
 // Connect to MongoDB
 connectDB();

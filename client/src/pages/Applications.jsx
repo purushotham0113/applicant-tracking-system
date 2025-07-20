@@ -34,15 +34,15 @@ const Applications = () => {
     try {
       const response = user.role === 'recruiter'
         ? await applicationsAPI.getRecruiterApplications({
-            ...filters,
-            page: pagination.page,
-            limit: pagination.limit
-          })
+          ...filters,
+          page: pagination.page,
+          limit: pagination.limit
+        })
         : await applicationsAPI.getCandidateApplications({
-            page: pagination.page,
-            limit: pagination.limit
-          })
-      
+          page: pagination.page,
+          limit: pagination.limit
+        })
+
       setApplications(response.data.applications)
       setPagination(response.data.pagination)
     } catch (error) {
@@ -94,8 +94,8 @@ const Applications = () => {
           {user.role === 'recruiter' ? 'Applications Management' : 'My Applications'}
         </h1>
         <p className="text-gray-600">
-          {user.role === 'recruiter' 
-            ? 'Review and manage candidate applications' 
+          {user.role === 'recruiter'
+            ? 'Review and manage candidate applications'
             : 'Track the status of your job applications'
           }
         </p>
@@ -148,20 +148,21 @@ const Applications = () => {
             <div className="text-center py-12">
               <h3 className="text-lg font-medium text-gray-900 mb-2">No applications found</h3>
               <p className="text-gray-600">
-                {user.role === 'recruiter' 
-                  ? 'No applications have been submitted yet' 
+                {user.role === 'recruiter'
+                  ? 'No applications have been submitted yet'
                   : 'You haven\'t applied to any jobs yet'
                 }
               </p>
             </div>
           ) : (
             applications.map((application) => (
+
               <div key={application._id} className="card hover:shadow-lg transition-shadow">
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
                     <div className="flex items-center space-x-4 mb-2">
                       <h3 className="text-lg font-semibold text-gray-900">
-                        {user.role === 'recruiter' 
+                        {user.role === 'recruiter'
                           ? `${application.candidate.firstName} ${application.candidate.lastName}`
                           : application.job.title
                         }
@@ -170,7 +171,7 @@ const Applications = () => {
                         {application.status}
                       </span>
                     </div>
-                    
+
                     <div className="text-sm text-gray-600 mb-2">
                       {user.role === 'recruiter' ? (
                         <>
@@ -186,22 +187,22 @@ const Applications = () => {
                         </>
                       )}
                     </div>
-                    
+
                     <div className="flex flex-wrap gap-2 mb-2">
-                      {user.role === 'recruiter' 
+                      {user.role === 'recruiter'
                         ? application.candidate.skills.slice(0, 3).map((skill, index) => (
-                            <span key={index} className="px-2 py-1 bg-primary-100 text-primary-800 text-xs rounded">
-                              {skill}
-                            </span>
-                          ))
+                          <span key={index} className="px-2 py-1 bg-primary-100 text-primary-800 text-xs rounded">
+                            {skill}
+                          </span>
+                        ))
                         : application.job.experienceLevel && (
-                            <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">
-                              {application.job.experienceLevel}
-                            </span>
-                          )
+                          <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded">
+                            {application.job.experienceLevel}
+                          </span>
+                        )
                       }
                     </div>
-                    
+
                     <p className="text-xs text-gray-500">
                       Applied on {format(new Date(application.createdAt), 'MMM d, yyyy')}
                       {application.statusUpdatedAt && application.statusUpdatedAt !== application.createdAt && (
@@ -209,7 +210,7 @@ const Applications = () => {
                       )}
                     </p>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     {user.role === 'recruiter' && (
                       <button
@@ -225,7 +226,7 @@ const Applications = () => {
                         <Edit className="h-4 w-4" />
                       </button>
                     )}
-                    
+
                     <a
                       href={application.resume}
                       target="_blank"
@@ -236,14 +237,14 @@ const Applications = () => {
                     </a>
                   </div>
                 </div>
-                
+
                 {application.coverLetter && (
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
                     <h4 className="text-sm font-medium text-gray-900 mb-2">Cover Letter</h4>
                     <p className="text-sm text-gray-700">{application.coverLetter}</p>
                   </div>
                 )}
-                
+
                 {application.notes && (
                   <div className="mt-4 p-3 bg-yellow-50 rounded-lg">
                     <h4 className="text-sm font-medium text-gray-900 mb-2">Notes</h4>
@@ -286,7 +287,7 @@ const Applications = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-md w-full p-6">
             <h2 className="text-xl font-semibold mb-4">Update Application Status</h2>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -307,7 +308,7 @@ const Applications = () => {
                   <option value="Hired">Hired</option>
                 </select>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Notes (optional)
@@ -324,7 +325,7 @@ const Applications = () => {
                 />
               </div>
             </div>
-            
+
             <div className="flex gap-4 mt-6">
               <button
                 onClick={() => setSelectedApplication(null)}

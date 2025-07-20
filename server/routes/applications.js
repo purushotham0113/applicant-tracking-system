@@ -1,8 +1,8 @@
 import express from 'express';
-import { 
-  applyForJob, 
-  getCandidateApplications, 
-  getJobApplications, 
+import {
+  applyForJob,
+  getCandidateApplications,
+  getJobApplications,
   updateApplicationStatus,
   getApplicationById,
   getRecruiterApplications
@@ -21,11 +21,11 @@ router.post('/apply/:jobId', requireCandidate, uploadResume, handleUploadError, 
 router.get('/my-applications', requireCandidate, getCandidateApplications);
 
 // Recruiter routes
-router.get('/job/:jobId', requireRecruiter, getJobApplications);
 router.get('/recruiter/all', requireRecruiter, getRecruiterApplications);
+router.get('/job/:jobId', requireRecruiter, getJobApplications);
 router.patch('/:applicationId/status', requireRecruiter, validateStatusUpdate, updateApplicationStatus);
 
-// Common routes
+// Common routes (must be after all above or will catch everything)
 router.get('/:applicationId', getApplicationById);
 
 export default router;

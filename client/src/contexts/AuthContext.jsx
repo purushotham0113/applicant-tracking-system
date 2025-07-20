@@ -77,3 +77,64 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   )
 }
+
+// import { createContext, useContext, useEffect, useState } from 'react'
+// import { authAPI } from '../services/api'
+
+// const AuthContext = createContext(null)
+
+// function useAuth() {
+//   const context = useContext(AuthContext)
+//   if (!context) {
+//     throw new Error('useAuth must be used within an AuthProvider')
+//   }
+//   return context
+// }
+
+// function AuthProvider({ children }) {
+//   const [user, setUser] = useState(null)
+//   const [isLoading, setIsLoading] = useState(true)
+
+//   useEffect(() => {
+//     checkAuthStatus()
+//   }, [])
+
+//   const checkAuthStatus = async () => {
+//     try {
+//       const response = await authAPI.checkAuth()
+//       if (response.data.isAuthenticated) {
+//         const profileResponse = await authAPI.getProfile()
+//         setUser(profileResponse.data.user)
+//       }
+//     } catch (error) {
+//       console.error('Auth check failed:', error)
+//     } finally {
+//       setIsLoading(false)
+//     }
+//   }
+
+//   const login = async (credentials) => {
+//     const response = await authAPI.login(credentials)
+//     setUser(response.data.user)
+//     return response
+//   }
+
+//   const register = async (userData, file) => {
+//     const response = await authAPI.register(userData, file)
+//     setUser(response.data.user)
+//     return response
+//   }
+
+//   const logout = async () => {
+//     await authAPI.logout()
+//     setUser(null)
+//   }
+
+//   return (
+//     <AuthContext.Provider value={{ user, isLoading, login, register, logout, checkAuthStatus }}>
+//       {children}
+//     </AuthContext.Provider>
+//   )
+// }
+
+// export { AuthProvider, useAuth }

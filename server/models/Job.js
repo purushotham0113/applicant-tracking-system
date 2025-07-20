@@ -42,13 +42,12 @@ const jobSchema = new mongoose.Schema({
     default: 'Full-time'
   },
   salary: {
-    min: Number,
-    max: Number,
-    currency: {
-      type: String,
-      default: 'USD'
-    }
+    min: { type: Number },
+    max: { type: Number },
+    currency: { type: String, default: 'USD' }
   },
+
+
   deadline: {
     type: Date,
     required: [true, 'Application deadline is required']
