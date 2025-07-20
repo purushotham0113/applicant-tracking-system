@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
-    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "node server.js",
     "build": "echo 'No build process needed for server'"
   },
   "dependencies": {
