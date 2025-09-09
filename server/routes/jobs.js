@@ -1,11 +1,11 @@
 import express from 'express';
-import { 
-  createJob, 
-  getJobs, 
-  getJobById, 
-  updateJob, 
-  deleteJob, 
-  getRecruiterJobs 
+import {
+  createJob,
+  getJobs,
+  getJobById,
+  updateJob,
+  deleteJob,
+  getRecruiterJobs
 } from '../controllers/jobController.js';
 import { requireAuth, requireRecruiter } from '../middleware/auth.js';
 import { validateJob } from '../middleware/validation.js';

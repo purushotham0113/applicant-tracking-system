@@ -9,9 +9,6 @@ function parseSkills(skills) {
 }
 
 export const register = async (req, res) => {
-  // console.log('🔍 req.body:', req.body);
-  // console.log('📎 req.file:', req.file);
-
   try {
     const { email, password, firstName, lastName, role, company, phone, skills } = req.body;
 
@@ -65,7 +62,6 @@ export const register = async (req, res) => {
       }
     });
   } catch (error) {
-    console.log("in the register catch")
     console.error('Registration error:', error);
     res.status(500).json({ success: false, message: 'Registration failed', error: error.message });
   }
@@ -78,7 +74,6 @@ export const login = async (req, res) => {
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
-
     req.session.userId = user._id;
     req.session.userRole = user.role;
     req.session.userEmail = user.email;

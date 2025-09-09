@@ -3,6 +3,7 @@ import Job from '../models/Job.js';
 import User from '../models/User.js';
 import cloudinary from '../config/cloudinary.js';
 
+
 export const applyForJob = async (req, res) => {
   // //console.log('📥 applyForJob controller triggered');
 
