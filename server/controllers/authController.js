@@ -69,8 +69,10 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
+
     const { email, password, role } = req.body;
     const user = await User.findOne({ email, role, isActive: true });
+
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }

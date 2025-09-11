@@ -1,15 +1,18 @@
 export const requireAuth = (req, res, next) => {
+
   if (!req.session.userId) {
     return res.status(401).json({
       success: false,
       message: 'Access denied. Please log in.'
     });
   }
+
   next();
 };
 
 export const requireRecruiter = (req, res, next) => {
   if (!req.session.userId) {
+
     return res.status(401).json({
       success: false,
       message: 'Access denied. Please log in.'
@@ -27,6 +30,7 @@ export const requireRecruiter = (req, res, next) => {
 };
 
 export const requireCandidate = (req, res, next) => {
+
   if (!req.session.userId) {
     return res.status(401).json({
       success: false,

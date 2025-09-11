@@ -15,11 +15,13 @@ import { isAuthenticated } from '../middleware/isAuthenticated.js';
 const router = express.Router();
 
 // Protected routes
+
 router.use(requireAuth);
 
 // Candidate routes
 router.post('/apply/:jobId', requireCandidate, uploadResume, handleUploadError, validateApplication, applyForJob);
-router.get('/my-applications', requireCandidate, isAuthenticated, getCandidateApplications);
+router.get('/my-applications', requireCandidate, getCandidateApplications);
+
 
 // Recruiter routes
 router.get('/recruiter/all', requireRecruiter, getRecruiterApplications);

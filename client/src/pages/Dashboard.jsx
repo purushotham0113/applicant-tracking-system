@@ -24,10 +24,10 @@ const Dashboard = () => {
           jobsAPI.getRecruiterJobs({ limit: 5 }),
           applicationsAPI.getRecruiterApplications({ limit: 5 })
         ])
-        
+
         setRecentJobs(jobsResponse.data.jobs)
         setRecentApplications(applicationsResponse.data.applications)
-        
+
         setStats({
           totalJobs: jobsResponse.data.pagination.total,
           totalApplications: applicationsResponse.data.pagination.total,
@@ -37,12 +37,12 @@ const Dashboard = () => {
       } else {
         const applicationsResponse = await applicationsAPI.getCandidateApplications({ limit: 5 })
         setRecentApplications(applicationsResponse.data.applications)
-        
+
         const statusCounts = applicationsResponse.data.applications.reduce((acc, app) => {
           acc[app.status] = (acc[app.status] || 0) + 1
           return acc
         }, {})
-        
+
         setStats({
           totalApplications: applicationsResponse.data.pagination.total,
           pendingApplications: statusCounts.Applied || 0,

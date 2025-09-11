@@ -5,20 +5,14 @@ import cloudinary from '../config/cloudinary.js';
 
 
 export const applyForJob = async (req, res) => {
-  // //console.log('📥 applyForJob controller triggered');
-
   try {
     const { jobId } = req.params;
     const { coverLetter } = req.body;
-
-    // … your job existence and duplicate‐apply checks …
 
     let resumeUrl;
     const candidate = await User.findById(req.session.userId);
 
     if (req.file) {
-      //console.log('📎 File received:', req.file.originalname, req.file.mimetype, req.file.size);
-
       try {
         // upload to Cloudinary as a raw file
         const result = await new Promise((resolve, reject) => {
@@ -71,6 +65,45 @@ export const applyForJob = async (req, res) => {
   }
 };
 
+// export const getCandidateApplications = async (req, res) => {
+//   try {
+//     console.log("in getcandidate applications")
+//     const page = parseInt(req.query.page) || 1;
+//     const limit = parseInt(req.query.limit) || 10;
+//     const skip = (page - 1) * limit || 0;
+
+//     console.log(req.session.userId)
+
+//     const applications = await Application.find({ candidate: req.session.userId })
+//       .populate('job', 'title company location experienceLevel jobType deadline')
+//       .sort({ createdAt: -1 })
+//       .skip(skip)
+//       .limit(limit);
+
+//     const total = await Application.countDocuments({ candidate: req.session.userId });
+
+//     res.json({
+//       success: true,
+//       applications,
+//       pagination: {
+//         page,
+//         limit,
+//         total,
+//         pages: Math.ceil(total / limit)
+//       }
+//     });
+
+//   } catch (error) {
+//     //console.error('Get candidate applications error:', error);
+//     res.status(500).json({
+//       success: false,
+//       message: 'Failed to fetch applications',
+//       error: error.message
+//     });
+//   }
+// };
+
+
 export const getCandidateApplications = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -97,7 +130,6 @@ export const getCandidateApplications = async (req, res) => {
     });
 
   } catch (error) {
-    //console.error('Get candidate applications error:', error);
     res.status(500).json({
       success: false,
       message: 'Failed to fetch applications',
@@ -105,6 +137,7 @@ export const getCandidateApplications = async (req, res) => {
     });
   }
 };
+
 
 export const getJobApplications = async (req, res) => {
   try {
@@ -178,9 +211,8 @@ export const updateApplicationStatus = async (req, res) => {
         message: 'Application not found'
       });
     }
-
     // Check if user is the job owner
-    if (application.job.postedBy.toString() !== req.session.userId) {
+    if (application.job.postedBy.toString() !== req.session.userId.toString()) {
       return res.status(403).json({
         success: false,
         message: 'Not authorized to update this application'

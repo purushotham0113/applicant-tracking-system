@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://applicant-tracking-system-dhsh.onrender.com/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://applicant-tracking-system-1-pec3.onrender.com/api';
 // const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5500/api';
 
 const api = axios.create({
@@ -57,9 +57,12 @@ export const applicationsAPI = {
   },
   getCandidateApplications: (params = {}) => api.get('/applications/my-applications', { params }),
   getJobApplications: (jobId, params = {}) => api.get(`/applications/job/${jobId}`, { params }),
+
+
   getRecruiterApplications: (params = {}) => api.get('/applications/recruiter/all', { params }),
   updateApplicationStatus: (applicationId, statusData) => api.patch(`/applications/${applicationId}/status`, statusData),
   getApplicationById: (applicationId) => api.get(`/applications/${applicationId}`),
 };
+
 
 export default api;

@@ -59,15 +59,17 @@ app.use(session({
   saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: process.env.MONGO_URI,
-    touchAfter: 24 * 3600 // lazy session update
+    touchAfter: 24 * 3600,
+    stringify: false
+    // lazy session update
   }),
   cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    secure: true,
+    secure: process.env.NODE_ENV === 'production', // true only in prod (HTTPS)
     httpOnly: true,
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === 'production' ? "none" : "lax",
     maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days
   }
+
 }));
 
 // Routes
