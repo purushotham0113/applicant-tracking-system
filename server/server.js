@@ -45,6 +45,7 @@ app.use(cors({
     'http://localhost:5173',
     'https://applicant-tracking-system-client.onrender.com'
   ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   credentials: true,
   optionsSuccessStatus: 200
 }));
