@@ -12,17 +12,17 @@ const Footer = () => {
               <span className="text-2xl font-bold">ATS</span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
-              Streamline your hiring process with our comprehensive Applicant Tracking System. 
+              Streamline your hiring process with our comprehensive Applicant Tracking System.
               Connect talented candidates with amazing opportunities.
             </p>
             <div className="flex space-x-4">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-primary-400" />
-                <span className="text-sm text-gray-300">info@ats.com</span>
+                <span className="text-sm text-gray-300">purushothamkonikanti@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-primary-400" />
-                <span className="text-sm text-gray-300">+1 (555) 123-4567</span>
+                <span className="text-sm text-gray-300">+91 9014065000</span>
               </div>
             </div>
           </div>

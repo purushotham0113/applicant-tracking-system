@@ -18,7 +18,7 @@ const CreateJob = () => {
     salary: {
       min: '',
       max: '',
-      currency: 'USD'
+      currency: 'INR'
     }
   })
   const [skillsInput, setSkillsInput] = useState('')
@@ -87,7 +87,7 @@ const CreateJob = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="card">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Job Details</h2>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
@@ -208,7 +208,7 @@ const CreateJob = () => {
 
         <div className="card">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Requirements & Skills</h2>
-          
+
           <div className="space-y-6">
             <div>
               <label htmlFor="requiredSkills" className="block text-sm font-medium text-gray-700 mb-2">
@@ -242,7 +242,7 @@ const CreateJob = () => {
 
         <div className="card">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Salary Information (Optional)</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             <div>
               <label htmlFor="salary.min" className="block text-sm font-medium text-gray-700 mb-2">
@@ -285,6 +285,7 @@ const CreateJob = () => {
                 onChange={handleChange}
                 className="select"
               >
+                <option value="INR">INR</option>
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
                 <option value="GBP">GBP</option>
